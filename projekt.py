@@ -8,7 +8,7 @@ from Jablko import Jablko
 #szerokość i wysokość ekranu
 SZEROKOSC_EKRANU = 800
 WYSOKOSC_EKRANU = 608
-
+Punkty = 0
 #stworzenie tla
 tlo = pygame.Surface((SZEROKOSC_EKRANU, WYSOKOSC_EKRANU))
 for i in range(25):
@@ -24,7 +24,7 @@ pygame.init()
 #obiekt ekranu i zegara
 ekran = pygame.display.set_mode([SZEROKOSC_EKRANU, WYSOKOSC_EKRANU])
 zegar = pygame.time.Clock()
-
+moja_czcionka = pygame.font.SysFont('Comic Sans MS', 24)
 #Wąż
 waz = Waz()
 PORUSZ_WEZEM = pygame.USEREVENT + 1
@@ -80,6 +80,11 @@ while gra_dziala:
     #rysowanie jablek
     for jablko in jablka:
         ekran.blit(jablko.obraz, jablko.rect)
+
+    if waz.sprawdz_kolizje():
+        tekst_z_przegrana = moja_czcionka.render('Przegrana', False, (200,0,0))
+        ekran.blit(tekst_z_przegrana, (SZEROKOSC_EKRANU/2-50, WYSOKOSC_EKRANU/2))
+        gra_dziala = False
 
     pygame.display.flip()
     zegar.tick(30)
