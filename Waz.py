@@ -65,4 +65,8 @@ class Waz(pygame.sprite.Sprite):
             self.segmnety.append(nowy_segment)
             self.dodaj_segement = False
     def rysuj_segmenty(self, ekran):
-        
+        for segment in self.segmnety:
+            ekran.blit(segment.obraz, segment.pozycja)
+
+    def jedz_jablko(self):
+        self.dodaj_segement = True
