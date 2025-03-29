@@ -74,6 +74,7 @@ while gra_dziala:
     
     #rysowanie tła
     ekran.blit(tlo, (0, 0))
+    waz.rysuj_segmenty(ekran)
     #rysowanie glłowy węża
     ekran.blit(waz.obraz, waz.rect)
     #rysowanie jablek

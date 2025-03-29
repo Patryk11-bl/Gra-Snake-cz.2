@@ -32,6 +32,16 @@ class Waz(pygame.sprite.Sprite):
         if zmiana_mozliwa: 
             self.nowy_kierunek = kierunek
 
+    def sprawdz_kolizje(self):
+        for segment in self.segmnety:
+            if self.rect.topleft == segment.pozycja.topleft:
+                return True
+        if self.rect.top < 0 or self.rect.top >=608:
+            return True
+        if self.rect.left < 0 or self.rect.left >= 800:
+            return True
+        return False
+
     def aktualizuj(self):
         self.kierunek = self.nowy_kierunek
         self.obraz = pygame.transform.rotate(self.oryginalny_obraz, (self.kierunek.value*-90))
