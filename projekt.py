@@ -61,7 +61,16 @@ while gra_dziala:
             waz.aktualizuj()
         elif zdarzenie.type == pygame.QUIT:
             gra_dziala = False
-        
+    kolizja_z_jablkiem = pygame.sprite.spritecollideany(waz, jablka)
+    if kolizja_z_jablkiem != None:
+        kolizja_z_jablkiem.kill()
+        waz.jedz_jablko()
+        jablko = Jablko()
+        jablka.add(jablko)
+        Punkty += 1
+
+        if(Punkty % 5 ) == 0:
+            jajo = 
     
     #rysowanie tła
     ekran.blit(tlo, (0, 0))
