@@ -1,5 +1,7 @@
 import pygame
 from Kierunek import Kierunek
+import copy
+from Segment import Segment
 
 class Waz(pygame.sprite.Sprite):
     def __init__(self):
@@ -12,6 +14,10 @@ class Waz(pygame.sprite.Sprite):
         #zmienne odpowiedzialne za kierunek, oraz nowy wyznaczony kierunek
         self.kierunek = Kierunek.GORA
         self.nowy_kierunek = Kierunek.GORA
+        self.ostatnia_pozycja = self.rect
+        self.dodaj_segement = False
+        self.segmnety = []
+
 
     def zmien_kierunek(self, kierunek):
         zmiana_mozliwa = True
@@ -30,6 +36,8 @@ class Waz(pygame.sprite.Sprite):
         self.kierunek = self.nowy_kierunek
         self.obraz = pygame.transform.rotate(self.oryginalny_obraz, (self.kierunek.value*-90))
 
+        
+        self.ostatnia_pozycja = copy.deepcopy(self.rect)
         if self.kierunek == Kierunek.GORA:
             self.rect.move_ip(0, -32)
         if self.kierunek == Kierunek.PRAWO:
