@@ -46,3 +46,23 @@ class Waz(pygame.sprite.Sprite):
             self.rect.move_ip(-32, 0)
         if self.kierunek == Kierunek.DOL:
             self.rect.move_ip(0, 32)
+
+        for i in range(len(self.segmnety)):
+            if i ==0:
+                self.segmnety[i].przesun(self.ostatnia_pozycja)
+            else:
+                self.segmnety[i].przesun(self.segmnety[i-1].ostatnia_pozycja)
+        
+        if self.dodaj_segement:
+            nowy_segment = Segment()
+
+            nowa_pozycja = None
+            if len(self.segmnety) >0:
+                nowa_pozycja = copy.deepcopy(self.segmnety[-1].pozycja)
+            else:
+                nowa_pozycja = copy.deepcopy(self.ostatnia_pozycja)
+            nowy_segment.pozycja = nowa_pozycja
+            self.segmnety.append(nowy_segment)
+            self.dodaj_segement = False
+    def rysuj_segmenty(self, ekran):
+        
