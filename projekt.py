@@ -69,8 +69,7 @@ while gra_dziala:
         jablka.add(jablko)
         Punkty += 1
 
-        if(Punkty % 5 ) == 0:
-            jajo = 
+        
     
     #rysowanie tła
     ekran.blit(tlo, (0, 0))
@@ -80,6 +79,9 @@ while gra_dziala:
     #rysowanie jablek
     for jablko in jablka:
         ekran.blit(jablko.obraz, jablko.rect)
+
+    tekst_z_wynikiem = moja_czcionka.render(f'Wynik: {Punkty}', False,(0,0,0))
+    ekran.blit(tekst_z_wynikiem, (16,16))
 
     if waz.sprawdz_kolizje():
         tekst_z_przegrana = moja_czcionka.render('Przegrana', False, (200,0,0))
